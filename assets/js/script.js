@@ -2,13 +2,33 @@
 
 // functions
 
-//function to fire check time function every 30sec
-function callCheckTime()
-
 //check the current hour and change color accordingly
-function checkTimeChangeColor()
-//if row is current hour, change background to red
-//if row is after current hour, change background to green
+function checkTimeChangeColor() {
+  //get current hour from moment
+  let currentHour = moment().hour();
+
+  //loop through all rows and check data-hour
+
+  $(".time-block").each(function () {
+    //if row is before current hour, change background to grey
+    if ($(this).data("hour") < currentHour) {
+      $(".js-task", this).addClass("past");
+    }
+    //if row is current hour, change background to red
+    else if ($(this).data("hour") == currentHour) {
+      $(".js-task", this).addClass("present");
+    }
+    //if row is after current hour, change background to green
+    else {
+      $(".js-task", this).addClass("future");
+    }
+  });
+}
+
+checkTimeChangeColor();
+
+//setInterval so checkTimeChangecolor is called every 30sec
+setInterval(checkTimeChangeColor, 30000);
 
 // save tasks to local storage
 function saveTask() {
@@ -37,4 +57,4 @@ $("#hour17 .js-task").val(localStorage.getItem("hour17"));
 $("#currentDay").text(moment().format("MMMM Do, YYYY"));
 
 // user clicks save button
-$(".js-saveBtn").on("click", saveTask);
+$(".saveBtn").on("click", saveTask);
