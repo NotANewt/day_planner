@@ -1,6 +1,15 @@
 // global variables
 
 // functions
+
+//function to fire check time function every 30sec
+function callCheckTime()
+
+//check the current hour and change color accordingly
+function checkTimeChangeColor()
+//if row is current hour, change background to red
+//if row is after current hour, change background to green
+
 // save tasks to local storage
 function saveTask() {
   console.log($(this).parent());
