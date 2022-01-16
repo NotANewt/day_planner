@@ -1,14 +1,10 @@
-// global variables
-
 // functions
 
 //check the current hour and change color accordingly
 function checkTimeChangeColor() {
   //get current hour from moment
   let currentHour = moment().hour();
-
   //loop through all rows and check data-hour
-
   $(".time-block").each(function () {
     //if row is before current hour, change background to grey
     if ($(this).data("hour") < currentHour) {
@@ -25,6 +21,7 @@ function checkTimeChangeColor() {
   });
 }
 
+//call function when site loads
 checkTimeChangeColor();
 
 //setInterval so checkTimeChangecolor is called every 30sec
@@ -32,11 +29,10 @@ setInterval(checkTimeChangeColor, 30000);
 
 // save tasks to local storage
 function saveTask() {
-  console.log($(this).parent());
-
+  //set variable for time and task
   const time = $(this).parent().attr("id");
   const task = $(this).siblings("textarea").val();
-
+  //send time and task to local storage
   localStorage.setItem(time, task);
 }
 
